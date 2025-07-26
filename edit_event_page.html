@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Event</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="mb-4">
+            <a href="#" class="back_btn">
+                ← Back
+            </a>
+        </div>
+        <div class="create_card">
+            <h3 class="fw-bold mb-4">Edit Event</h3>
+            <form id="editEventForm" onsubmit="submitEditEvent(event)">
+                <div class="mb-3">
+                    <label for="event_name" class="form-label">Event Name</label>
+                    <input type="text" class="form-control" id="event_name" required autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="event_time" class="form-label">Event Time</label>
+                    <input type="datetime-local" class="form-control" id="event_time" required autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="event_location" class="form-label">Event Location</label>
+                    <input type="text" class="form-control" id="event_location" required autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="event_description" class="form-label">Event Description</label>
+                    <textarea class="form-control" id="event_description" rows="3" required autocomplete="off"></textarea>
+                </div>
+                <div class="d-grid mt-4">
+                    <button type="submit" class="create_btn">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/events.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadEditEvent();
+            const params = new URLSearchParams(window.location.search);
+            const eventId = params.get('event_id');
+            if (eventId) {
+                document.querySelector('.back_btn').href = `specific_event_page.html?event_id=${eventId}`;
+            }
+        });
+    </script>
+</body>
+</html>

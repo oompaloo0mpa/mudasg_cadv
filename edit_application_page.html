@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Application</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <!-- Back Button -->
+        <div class="mb-4">
+            <a href="user_profile_page.html" class="back_btn" id="backBtn">
+                 Back
+            </a>
+        </div>
+        <!-- Edit Application Card -->
+        <div class="create_card">
+            <h3 class="fw-bold mb-4">Edit Application</h3>
+            <form id="editAppForm">
+                <div class="mb-3">
+                    <label for="app-email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="app-email" name="email" required readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="app-name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="app-name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="app-contactno" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" id="app-contactno" name="contactno" required>
+                </div>
+                <div class="d-grid mt-4">
+                    <button type="submit" class="create_btn">Save Changes</button>
+                </div>
+                <div id="editAppMessage" class="edit-app-message mt-3"></div>
+            </form>
+        </div>
+    </div>
+    <script>
+    // Get event_id from URL
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get('event_id');
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if (!user || !user.email || !eventId) {
+        document.getElementById('editAppMessage').textContent = 'Missing user or event information.';
+        document.getElementById('editAppMessage').style.color = 'red';
+    } else {
+        // Prefill email
+        document.getElementById('app-email').value = user.email;
+        // Fetch application details to prefill name and contactno
+        fetch(`https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application/${encodeURIComponent(user.email)}/${eventId}`)
+            .then(res => res.json())
+            .then(data => {
+                // If API returns { Item: {...} }
+                const app = data.Item || data;
+                if (app) {
+                    document.getElementById('app-name').value = app.name || user.fullname || '';
+                    document.getElementById('app-contactno').value = app.contactno || user.contactno || '';
+                }
+            });
+    }
+    document.getElementById('editAppForm').onsubmit = function(e) {
+        e.preventDefault();
+        var response = "";
+        var jsonData = {};
+        jsonData.email = document.getElementById("app-email").value;
+        jsonData.name = document.getElementById("app-name").value;
+        jsonData.contactno = document.getElementById("app-contactno").value;
+        if (jsonData.email == "" || jsonData.name == "" || jsonData.contactno == "") {
+            document.getElementById('editAppMessage').textContent = 'All fields are required!';
+            document.getElementById('editAppMessage').style.color = 'red';
+            return;
+        }
+        var request = new XMLHttpRequest();
+        request.open("PUT", `https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application/${encodeURIComponent(jsonData.email)}/${eventId}`, true);
+        request.onload = function() {
+            response = JSON.parse(request.responseText);
+            if (response.message == "application edited") {
+                document.getElementById('editAppMessage').textContent = 'Application updated successfully.';
+                document.getElementById('editAppMessage').style.color = 'green';
+                setTimeout(() => { window.location.href = 'user_profile_page.html'; }, 1200);
+            } else {
+                document.getElementById('editAppMessage').textContent = 'Error. Unable to update application.';
+                document.getElementById('editAppMessage').style.color = 'red';
+            }
+        };
+        request.onerror = function() {
+            document.getElementById('editAppMessage').textContent = 'Network error.';
+            document.getElementById('editAppMessage').style.color = 'red';
+        };
+        request.send(JSON.stringify(jsonData));
+    };
+    // Set back button to go back to the correct event if needed
+    document.getElementById('backBtn').href = `user_profile_page.html`;
+    </script>
+</body>
+</html> 

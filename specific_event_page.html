@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="mb-4">
+            <a href="index_page.html" class="back_btn">
+                ← Back to Events
+            </a>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="card-title mb-0" id="eventName">Loading...</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h6 class="text-muted mb-1">Date & Time</h6>
+                        <p class="h5" id="eventTime">-</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <h6 class="text-muted mb-1">Location</h6>
+                        <p class="h5" id="eventLocation">-</p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <h6 class="text-muted mb-1">Description</h6>
+                    <p id="eventDescription" class="lead">-</p>
+                </div>
+            </div>
+            <div class="card-footer bg-light">
+                <div id="eventButtons" class="d-flex gap-2 justify-content-end">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/events.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadEventDetails);
+    </script>
+</body>
+</html>

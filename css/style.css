@@ -1,0 +1,526 @@
+/* background for pages */
+body {
+    background: #476cff;
+    font-family: Arial, sans-serif;
+}
+body {
+    background-color: #f8f9fa;
+}
+
+/* navbar for all  pages in gneral */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/*back to index page button */
+.back_btn {
+    display: inline-block;
+    color: #6c757d;
+    background: transparent;
+    border: 1px solid #6c757d;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+.back_btn:hover {
+    background: #f8f9fa;
+    color: #343a40;
+    text-decoration: none;
+}
+
+/* cognito login */
+.login-option-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: 2px solid #e0e0e0;
+}
+.login-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: #007bff;
+}
+.user_button {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.user_button:hover {
+    background: #1746a2;
+}
+.admin_button {
+    background: #8b5cf6; /* purple-500 */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.admin_button:hover {
+    background: #6d28d9; /* purple-700 */
+}
+
+/* cognito login*/
+.login_box {
+    background: #fff;
+    max-width: 350px;
+    margin: 60px auto;
+    padding: 32px 24px 24px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+.login_box h2 {
+    margin-bottom: 8px;
+    font-size: 1.7rem;
+    color: #2d3a4b;
+    text-align: center;
+}
+.login_box small {
+    display: block;
+    margin-bottom: 18px;
+    color: #888;
+    text-align: center;
+}
+.login_box label {
+    display: block;
+    margin-bottom: 6px;
+    color: #444;
+}
+.login_box input[type="text"],
+.login_box input[type="password"] {
+    width: 100%;
+    padding: 10px 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+.login_box button {
+    width: 100%;
+    padding: 10px;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.login_box button:hover {
+    background: #2563eb;
+}
+#result {
+    margin-top: 14px;
+    text-align: center;
+    color: #e11d48;
+}
+
+/*index page*/
+.card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+}
+.card-title {
+    font-weight: bold;
+}
+.btn-details {
+    background-color: white;
+    border: 1px solid #ced4da;
+    width: 100%;
+}
+.btn-details:hover {
+    background-color: #f1f1f1;
+}
+.img-container {
+    position: relative;
+}
+.urgent-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* create and edit event pages */
+.edit-card, .create_card {
+    background: #d3d3d3;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.edit-card label, .create_card label {
+    font-weight: 500;
+}
+.create_btn {
+    background: #6c63ff;      
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+}
+.create-btn:hover {
+    background: #5548c8;     
+}
+
+.create_card {
+    background: #d3d3d3;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.form-label {
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    background: #fff;
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+.form-control:focus {
+    border-color: #6c63ff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(108,99,255,0.15);
+}
+.create_btn {
+    background: #6c63ff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+}
+.create_btn:hover {
+    background: #5548c8;
+}
+.back_btn {
+    display: inline-block;
+    color: #6c757d;
+    background: transparent;
+    border: 1px solid #6c757d;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+.back_btn:hover {
+    background: #f8f9fa;
+    color: #343a40;
+    text-decoration: none;
+}
+
+/* specific event page*/
+.edit_btn {
+    background: #ffc107;      
+    color: #212529;          
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.edit_btn:hover {
+    background: #e0a800;      
+}
+.delete_btn {
+    background: #dc3545;      
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+.delete-btn:hover {
+    background: #b71c1c;     
+}
+
+/* icons */
+.display-4 {
+    font-weight: 700;
+    color: #2c3e50;
+}
+.lead {
+    font-size: 1.25rem;
+}
+.fa-users {
+    color: #007bff !important;
+}
+.fa-user-shield {
+    color: #28a745 !important;
+}
+
+/* Cognito-style Auth Page */
+.cognito-auth-bg {
+    background: #f4f6fb;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cognito-auth-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    width: 350px;
+    padding: 32px 28px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.cognito-auth-tabs {
+    display: flex;
+    margin-bottom: 24px;
+}
+.cognito-auth-tabs button {
+    flex: 1;
+    padding: 12px 0;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    color: #555;
+}
+.cognito-auth-tabs button.active {
+    border-bottom: 2.5px solid #2563eb;
+    color: #2563eb;
+    font-weight: 600;
+}
+.cognito-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.cognito-auth-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.cognito-auth-field label {
+    font-size: 0.97em;
+    color: #333;
+    margin-bottom: 2px;
+}
+.cognito-auth-field input {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1em;
+    background: #f9fafb;
+    transition: border-color 0.2s;
+}
+.cognito-auth-field input:focus {
+    border-color: #2563eb;
+    outline: none;
+    background: #fff;
+}
+.cognito-auth-field select {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1em;
+    background: #f9fafb;
+    transition: border-color 0.2s;
+}
+.cognito-auth-field select:focus {
+    border-color: #2563eb;
+    outline: none;
+    background: #fff;
+}
+.cognito-auth-form button {
+    margin-top: 8px;
+    padding: 12px 0;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.cognito-auth-form button:hover {
+    background: #1e40af;
+}
+.cognito-auth-message {
+    min-height: 20px;
+    font-size: 0.98em;
+    margin-top: 4px;
+    color: #e11d48;
+    text-align: center;
+}
+
+/* User Profile Page Styles */
+.profile-card {
+    background: #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    min-width: 280px;
+    max-width: 350px;
+}
+.profile-card img {
+    border: 4px solid #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+#userEventsList {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 16px;
+    min-height: 120px;
+    border: 1px solid #d3d3d3;
+}
+#userEventsList .event-box {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+#userEventsList .event-box h5 {
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+#userEventsList .event-box .event-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+}
+#userEventsList .event-box button {
+    min-width: 100px;
+}
+
+/* Edit Application Page Styles (edit_application.html) */
+.edit-app-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+}
+.edit-app-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 2rem 2.5rem;
+    max-width: 400px;
+    width: 100%;
+}
+.edit-app-card h2 {
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+.edit-app-card label {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+.edit-app-card input {
+    margin-bottom: 1rem;
+}
+.edit-app-card .btn {
+    width: 100%;
+    font-weight: bold;
+}
+.edit-app-message {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Event Image Styles */
+.event-image-container {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.event-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.event-card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 8px 8px 0 0;
+}
+
+.event-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    padding: 20px 15px 15px;
+    color: white;
+}
+
+.event-card-overlay .card-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Image upload styling */
+#currentImage img {
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+}
+
+/* Fallback for cards without images */
+.event-card-image.no-image {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-card-image.no-image::before {
+    content: "📅";
+    font-size: 3rem;
+    color: white;
+}
+
+
