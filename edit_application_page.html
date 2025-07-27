@@ -48,16 +48,24 @@
         // Prefill email
         document.getElementById('app-email').value = user.email;
         // Fetch application details to prefill name and contactno
-        fetch(`https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application/${encodeURIComponent(user.email)}/${eventId}`)
-            .then(res => res.json())
-            .then(data => {
-                // If API returns { Item: {...} }
-                const app = data.Item || data;
-                if (app) {
-                    document.getElementById('app-name').value = app.name || user.fullname || '';
-                    document.getElementById('app-contactno').value = app.contactno || user.contactno || '';
+        var request = new XMLHttpRequest();
+        request.open('GET', `https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application/${encodeURIComponent(user.email)}/${eventId}`, true);
+        request.onload = function() {
+            if (request.status === 200) {
+                try {
+                    var data = JSON.parse(request.responseText);
+                    // If API returns { Item: {...} }
+                    var app = data.Item || data;
+                    if (app) {
+                        document.getElementById('app-name').value = app.name || user.fullname || '';
+                        document.getElementById('app-contactno').value = app.contactno || user.contactno || '';
+                    }
+                } catch (error) {
+                    console.error('Error parsing response:', error);
                 }
-            });
+            }
+        };
+        request.send();
     }
     document.getElementById('editAppForm').onsubmit = function(e) {
         e.preventDefault();
@@ -78,7 +86,7 @@
 
         var request = new XMLHttpRequest();
         
-        request.open("PUT", "https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application/" + email + "/" + id, true);
+        request.open("PUT", "https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application/" + encodeURIComponent(email) + "/" + id, true);
             
         request.onload = function() {
             response = JSON.parse(request.responseText);
