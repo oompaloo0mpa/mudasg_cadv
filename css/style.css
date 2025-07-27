@@ -398,42 +398,7 @@ body {
     min-width: 100px;
 }
 
-/* edit application */
-.edit-app-container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8f9fa;
-}
-.edit-app-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    padding: 2rem 2.5rem;
-    max-width: 400px;
-    width: 100%;
-}
-.edit-app-card h2 {
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-}
-.edit-app-card label {
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
-.edit-app-card input {
-    margin-bottom: 1rem;
-}
-.edit-app-card .btn {
-    width: 100%;
-    font-weight: bold;
-}
-.edit-app-message {
-    margin-top: 1rem;
-    text-align: center;
-    font-size: 1rem;
-}
+
 
 
 

@@ -106,4 +106,4 @@ async function applyForEvent(eventId, event) {
         alert('Network error: ' + err.message);
     }
 }
-// Add edit and delete application functions as needed, using the endpoints from Postman. 
+ 

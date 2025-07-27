@@ -126,17 +126,13 @@ function renderUserEvents(events) {
             <div>Date & Time: ${event.event_time || ''}</div>
             <div>Location: ${event.event_location || ''}</div>
             <div class="event-actions">
-                <button class="btn btn-secondary btn-sm" onclick="editUserEvent('${event.event_id}')">Edit Details</button>
                 <button class="btn btn-danger btn-sm" onclick="deleteUserEvent('${event.event_id}')">Delete</button>
             </div>
         </div>
     `).join('');
 }
 
-function editUserEvent(eventId) {
-    // Redirect to the edit application page for this event
-                window.location.href = `edit_application_page.html?event_id=${eventId}`;
-}
+
 
 function deleteApplication(email, event_id) {
     fetch("https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application/" + email + "/" + event_id, {
