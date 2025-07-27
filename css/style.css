@@ -248,9 +248,11 @@ body {
 }
 .fa-users {
     color: #2fe52f !important;
+    font-size: 4rem !important;
 }
 .fa-user-shield {
     color: #45a1eb !important;
+    font-size: 4rem !important;
 }
 
 
