@@ -61,35 +61,39 @@
     }
     document.getElementById('editAppForm').onsubmit = function(e) {
         e.preventDefault();
+        updateApplication(eventId, user.email);
+    };
+    
+    function updateApplication(id, email) {
         var response = "";
-        var jsonData = {};
+        
+        var jsonData = new Object();
         jsonData.email = document.getElementById("app-email").value;
         jsonData.name = document.getElementById("app-name").value;
         jsonData.contactno = document.getElementById("app-contactno").value;
+        
         if (jsonData.email == "" || jsonData.name == "" || jsonData.contactno == "") {
-            document.getElementById('editAppMessage').textContent = 'All fields are required!';
-            document.getElementById('editAppMessage').style.color = 'red';
-            return;
-        }
+            alert('All fields are required!'); return;
+        } 
+
         var request = new XMLHttpRequest();
-        request.open("PUT", `https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application/${encodeURIComponent(jsonData.email)}/${eventId}`, true);
+        
+        request.open("PUT", "https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application/" + email + "/" + id, true);
+            
         request.onload = function() {
             response = JSON.parse(request.responseText);
+            
             if (response.message == "application edited") {
-                document.getElementById('editAppMessage').textContent = 'Application updated successfully.';
-                document.getElementById('editAppMessage').style.color = 'green';
-                setTimeout(() => { window.location.href = 'user_profile_page.html'; }, 1200);
-            } else {
-                document.getElementById('editAppMessage').textContent = 'Error. Unable to update application.';
-                document.getElementById('editAppMessage').style.color = 'red';
+                alert('Application updated successfully.');
+                location.reload();
+            }
+            else {
+                alert('Error. Unable to update application.');
             }
         };
-        request.onerror = function() {
-            document.getElementById('editAppMessage').textContent = 'Network error.';
-            document.getElementById('editAppMessage').style.color = 'red';
-        };
+        
         request.send(JSON.stringify(jsonData));
-    };
+    }
     // Set back button to go back to the correct event if needed
     document.getElementById('backBtn').href = `user_profile_page.html`;
     </script>
