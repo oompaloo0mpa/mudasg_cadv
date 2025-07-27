@@ -5,24 +5,33 @@ function loadEvents() {
     request.open('GET', API_BASE, true);
     request.onload = function() {
         if (request.status === 200) {
-            const events = JSON.parse(request.responseText);
-            let eventsContainer = document.getElementById('eventsContainer');
-            eventsContainer.innerHTML = '';
-            for (let i = 0; i < events.length; i++) {
-                const event = events[i];
-                const eventCard =
-                    '<div class="col-md-4 mb-4">' +
-                    '<div class="card h-100">' +
-                    '<div class="card-body d-flex flex-column">' +
-                    '<h5 class="card-title">' + event.event_name + '</h5>' +
-                    '<p class="card-text text-muted small">' + new Date(event.event_time).toLocaleString() + '<br>' + event.event_location + '</p>' +
-                    '<button class="btn btn-details mt-auto" onclick="viewEvent(\'' + event.event_id + '\')">View Details</button>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>';
-                eventsContainer.innerHTML += eventCard;
+            try {
+                const events = JSON.parse(request.responseText);
+                let eventsContainer = document.getElementById('eventsContainer');
+                eventsContainer.innerHTML = '';
+                for (let i = 0; i < events.length; i++) {
+                    const event = events[i];
+                    const eventCard =
+                        '<div class="col-md-4 mb-4">' +
+                        '<div class="card h-100">' +
+                        '<div class="card-body d-flex flex-column">' +
+                        '<h5 class="card-title">' + event.event_name + '</h5>' +
+                        '<p class="card-text text-muted small">' + new Date(event.event_time).toLocaleString() + '<br>' + event.event_location + '</p>' +
+                        '<button class="btn btn-details mt-auto" onclick="viewEvent(\'' + event.event_id + '\')">View Details</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                    eventsContainer.innerHTML += eventCard;
+                }
+            } catch (error) {
+                logError('Error parsing events data', error);
             }
+        } else {
+            logError('Failed to load events: ' + request.status);
         }
+    };
+    request.onerror = function() {
+        logError('Network error loading events');
     };
     request.send();
 }
