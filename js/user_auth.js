@@ -34,7 +34,7 @@ loginBtn.addEventListener('click', function(e) {
     }
     var jsonData = { email, password };
     var request = new XMLHttpRequest();
-    request.open("POST", "https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/user-login", true);
+            request.open("POST", "https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/user-login", true);
     request.onload = function() {
         var response = JSON.parse(request.responseText);
         // Accept both DynamoDB and RDS style responses
@@ -87,7 +87,7 @@ signupBtn.addEventListener('click', function(e) {
     }
     var jsonData = { email, contactno, dob, fullname, gender, password };
     var request = new XMLHttpRequest();
-    request.open("POST", "https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/user-register", true);
+            request.open("POST", "https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/user-register", true);
     request.onload = function() {
         var response = JSON.parse(request.responseText);
         if (response.message === "user added" || response.success) {

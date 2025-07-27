@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.log('Event ID:', eventId);
     if (!eventId) return;
 
-    // Fetch event details
-    const res = await fetch(API_BASE, {
+    // Fetch event details using the specific event endpoint
+    const res = await fetch(`${API_BASE.replace('/events', '')}/events_type/${eventId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     });
@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         return;
     }
     if (!res.ok) {
-        console.error('Failed to fetch events:', res.status);
+        console.error('Failed to fetch event:', res.status);
         return;
     }
     
     const events = await res.json();
-    const event = events.find(e => e.event_id == eventId);
+    const event = Array.isArray(events) ? events[0] : events;
     if (!event) return;
 
     document.getElementById('eventName').textContent = event.event_name;

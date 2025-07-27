@@ -1,6 +1,6 @@
 
-const clientId = '2ekqtfeiupo3uht0bqke2fg8i'; 
-const userPoolId = 'us-east-1_fIK0ZudQq';
+const clientId = '5k7vaogaak4jl1ahvjptb024vf';
+const userPoolId = 'us-east-1_XoGK4XDqP';
 const cognitoEndpoint = 'https://cognito-idp.us-east-1.amazonaws.com/';
 
 const loginForm = document.getElementById('loginForm');

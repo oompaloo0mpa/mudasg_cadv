@@ -48,7 +48,7 @@
         // Prefill email
         document.getElementById('app-email').value = user.email;
         // Fetch application details to prefill name and contactno
-        fetch(`https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application/${encodeURIComponent(user.email)}/${eventId}`)
+        fetch(`https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application/${encodeURIComponent(user.email)}/${eventId}`)
             .then(res => res.json())
             .then(data => {
                 // If API returns { Item: {...} }
@@ -72,7 +72,7 @@
             return;
         }
         var request = new XMLHttpRequest();
-        request.open("PUT", `https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application/${encodeURIComponent(jsonData.email)}/${eventId}`, true);
+        request.open("PUT", `https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application/${encodeURIComponent(jsonData.email)}/${eventId}`, true);
         request.onload = function() {
             response = JSON.parse(request.responseText);
             if (response.message == "application edited") {
