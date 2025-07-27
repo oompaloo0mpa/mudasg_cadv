@@ -143,6 +143,9 @@ function submitEditEvent(e) {
         event_description: document.getElementById('event_description').value,
         event_image: getUploadedImageUrl() || null
     };
+    
+    console.log('Submitting edit event data:', eventData);
+    console.log('Image URL for edit:', getUploadedImageUrl());
 
     const request = new XMLHttpRequest();
     request.open('PUT', `https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events/${eventId}`, true);
@@ -167,6 +170,9 @@ function submitCreateEvent(e) {
         event_description: document.getElementById("event_description").value,
         event_image: getUploadedImageUrl() || null
     };
+    
+    console.log('Submitting event data:', eventData);
+    console.log('Image URL:', getUploadedImageUrl());
 
     if (!eventData.event_name || !eventData.event_time || !eventData.event_location || !eventData.event_description) {
         alert('All fields are required!');
