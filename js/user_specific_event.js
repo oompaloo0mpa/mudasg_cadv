@@ -2,7 +2,7 @@ const API_BASE = 'https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events'
 const APPLICATION_API = 'https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application';
 const APPLICATION_EVENT_API = 'https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application-event';
 
-// Load event details and setup apply button
+// loads event details and setup apply button
 
 function getUser() {
     return JSON.parse(sessionStorage.getItem('user'));
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.log('Event ID:', eventId);
     if (!eventId) return;
 
-    // Fetch event details using the specific event endpoint
+    // fetches event details using the specific event endpoint
     const res = await fetch(`${API_BASE.replace('/events', '')}/events_type/${eventId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('eventLocation').textContent = event.event_location;
     document.getElementById('eventDescription').textContent = event.event_description;
 
-    // Setup Apply button
+    // setup Apply button
     const applyBtn = document.getElementById('applyBtn');
     console.log('Apply button found:', applyBtn);
     if (applyBtn) {
@@ -70,7 +70,7 @@ async function applyForEvent(eventId, event) {
         return;
     }
     
-    // Build application data
+    // application data
     const jsonData = {
         email: user.email,
         event_id: Number(eventId),
@@ -97,7 +97,6 @@ async function applyForEvent(eventId, event) {
         
         if (res.ok) {
             alert('Application submitted successfully!');
-            // Optionally redirect or update UI
         } else {
             alert(data.message || 'Application failed.');
         }

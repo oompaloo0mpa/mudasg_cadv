@@ -35,15 +35,15 @@ loginForm.addEventListener('submit', async (e) => {
             resultDiv.textContent = 'Login successful!';
             console.log('Tokens:', data.AuthenticationResult);
 
-            // Store tokens for admin authentication
+            // tokens for admin auth
             localStorage.setItem('cognitoAccessToken', data.AuthenticationResult.AccessToken);
             localStorage.setItem('cognitoIdToken', data.AuthenticationResult.IdToken);
             localStorage.setItem('cognitoRefreshToken', data.AuthenticationResult.RefreshToken);
 
-            // Remove volunteer flag if present
+            // remove any previous user info
             localStorage.removeItem('userType');
 
-            // Redirect to main page
+            // to main page
             window.location.href = 'index_page.html';
         } else {
             resultDiv.textContent = 'Login failed: ' + (data.message || JSON.stringify(data));

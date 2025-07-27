@@ -37,9 +37,8 @@ loginBtn.addEventListener('click', function(e) {
             request.open("POST", "https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/user-login", true);
     request.onload = function() {
         var response = JSON.parse(request.responseText);
-        // Accept both DynamoDB and RDS style responses
         if ((response.Count === 1 && response.Items) || response.success || response.user) {
-            // Save user info to sessionStorage
+            // save user info 
             if (response.Items && response.Items[0]) {
                 sessionStorage.setItem("user", JSON.stringify(response.Items[0]));
             } else if (response.user) {
@@ -62,7 +61,7 @@ loginBtn.addEventListener('click', function(e) {
     request.send(JSON.stringify(jsonData));
 });
 
-// Signup
+// signup
 const signupBtn = document.getElementById('signupBtn');
 const signupMessage = document.getElementById('signupMessage');
 signupBtn.addEventListener('click', function(e) {

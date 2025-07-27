@@ -1,6 +1,6 @@
-// Global error handler
+//  error handler
 window.onerror = function(message, source, lineno, colno, error) {
-    // Prepare error data
+    // preparing error data
     const errorData = {
         message: message,
         source: source,
@@ -13,14 +13,14 @@ window.onerror = function(message, source, lineno, colno, error) {
         type: 'frontend_error'
     };
     
-    // Send error to backend
+    //  error to backend
     sendErrorLog(errorData);
     
-    // Return false to allow default error handling
+    // gives false to allow default error handling
     return false;
 };
 
-// Handle unhandled promise rejections
+// settles unhandled promise rejections
 window.addEventListener('unhandledrejection', function(event) {
     const errorData = {
         message: event.reason ? event.reason.toString() : 'Unhandled Promise Rejection',
@@ -37,9 +37,9 @@ window.addEventListener('unhandledrejection', function(event) {
     sendErrorLog(errorData);
 });
 
-// Function to send error logs to backend
+// sends error logs to backend
 function sendErrorLog(errorData) {
-    // Don't send errors if we're already in an error state
+    // dont send errors if we're already in an error state
     if (window.errorLoggingFailed) {
         console.error('Error logging failed, not sending:', errorData);
         return;
@@ -60,12 +60,12 @@ function sendErrorLog(errorData) {
     })
     .catch(err => {
         console.error('Failed to send error log:', err);
-        // Prevent infinite loops
+        // stops inf loops
         window.errorLoggingFailed = true;
     });
 }
 
-// Function to manually log errors
+//  manually log errors
 function logError(message, error = null) {
     const errorData = {
         message: message,
@@ -82,5 +82,5 @@ function logError(message, error = null) {
     sendErrorLog(errorData);
 }
 
-// Export for use in other files
+// export for use in other files
 window.logError = logError; 

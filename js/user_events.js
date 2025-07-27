@@ -77,10 +77,9 @@ function loadUserProfile() {
         return response.json();
     })
     .then(async data => {
-        // Support both array and { Items: [...] } response
         const applications = Array.isArray(data) ? data : (data.Items || []);
         document.getElementById('totalEvents').textContent = applications.length;
-        // Fetch event details for each application
+        // gets event details for each application
         const eventIds = applications.map(app => app.event_id);
         const eventsRes = await fetch('https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events', {
             method: 'GET',
@@ -98,7 +97,7 @@ function loadUserProfile() {
         // Map event_id to event details
         const eventsMap = {};
         allEvents.forEach(ev => { eventsMap[ev.event_id] = ev; });
-        // Merge application info with event details
+        // merge application info with event details
         const userEvents = applications.map(app => ({
             ...app,
             event_name: eventsMap[app.event_id]?.event_name || app.event_name || app.name,
