@@ -1,15 +1,15 @@
 /* background for pages */
 body {
-    background: #476cff;
+    background: #dadada;
     font-family: Arial, sans-serif;
 }
 body {
-    background-color: #3499fe;
+    background-color: #ffffff;
 }
 
-/* navbar for all  pages in gneral */
+/* navbar for all pages */
 .navbar {
-    background-color: #ff00ae;
+    background-color: #efdae8;
     border-bottom: 1px solid #e0e0e0;
 }
 
@@ -23,7 +23,7 @@ body {
     padding: 8px 18px;
     font-size: 1rem;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s;
+
 }
 .back_btn:hover {
     background: #f8f9fa;
@@ -424,7 +424,7 @@ body {
     min-width: 100px;
 }
 
-/* Edit Application Page Styles (edit_application.html) */
+/* edit application */
 .edit-app-container {
     min-height: 100vh;
     display: flex;
@@ -460,67 +460,4 @@ body {
     text-align: center;
     font-size: 1rem;
 }
-
-/* Event Image Styles */
-.event-image-container {
-    width: 100%;
-    max-height: 400px;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.event-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
-}
-
-.event-card-image {
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    border-radius: 8px 8px 0 0;
-}
-
-.event-card-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.7));
-    padding: 20px 15px 15px;
-    color: white;
-}
-
-.event-card-overlay .card-title {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-}
-
-/* Image upload styling */
-#currentImage img {
-    border-radius: 8px;
-    border: 2px solid #e0e0e0;
-}
-
-/* Fallback for cards without images */
-.event-card-image.no-image {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.event-card-image.no-image::before {
-    content: "📅";
-    font-size: 3rem;
-    color: white;
-}
-
 
