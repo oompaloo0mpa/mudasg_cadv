@@ -67,7 +67,7 @@ body {
     background: #3f7aab; 
 }
 
-/* cognito login*/
+/* cognito login user */
 .login_box {
     background: #fff;
     max-width: 350px;
@@ -105,7 +105,7 @@ body {
 .login_box button {
     width: 100%;
     padding: 10px;
-    background: #3b82f6;
+    background: #5cb1f6;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -113,7 +113,7 @@ body {
     cursor: pointer;
 }
 .login_box button:hover {
-    background: #2563eb;
+    background: #3f7aab;
 }
 #result {
     margin-top: 14px;
@@ -137,20 +137,6 @@ body {
 .btn-details:hover {
     background-color: #f1f1f1;
 }
-.img-container {
-    position: relative;
-}
-.urgent-tag {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #dc3545;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
 
 /* create and edit event pages */
 .edit-card, .create_card {
@@ -163,20 +149,6 @@ body {
 }
 .edit-card label, .create_card label {
     font-weight: 500;
-}
-.create_btn {
-    background: #6c63ff;      
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    width: 100%;
-    cursor: pointer;
-}
-.create-btn:hover {
-    background: #5548c8;     
 }
 
 .create_card {
@@ -203,12 +175,12 @@ body {
     transition: border-color 0.2s;
 }
 .form-control:focus {
-    border-color: #6c63ff;
+    border-color: #5cb1f6;
     outline: none;
     box-shadow: 0 0 0 2px rgba(108,99,255,0.15);
 }
 .create_btn {
-    background: #6c63ff;
+    background: #5cb1f6;
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -219,7 +191,7 @@ body {
     cursor: pointer;
 }
 .create_btn:hover {
-    background: #5548c8;
+    background: #3f7aab;
 }
 .back_btn {
     display: inline-block;
@@ -239,7 +211,7 @@ body {
 
 /* specific event page*/
 .edit_btn {
-    background: #ffc107;      
+    background: #5cb1f6;      
     color: #212529;          
     border: none;
     border-radius: 6px;
@@ -250,7 +222,7 @@ body {
     cursor: pointer;
 }
 .edit_btn:hover {
-    background: #e0a800;      
+    background: #3f7aab;      
 }
 .delete_btn {
     background: #dc3545;      
@@ -266,7 +238,7 @@ body {
     background: #b71c1c;     
 }
 
-/* icons */
+/* icons for za onboarding page */
 .display-4 {
     font-weight: 700;
     color: #2c3e50;
@@ -275,21 +247,22 @@ body {
     font-size: 1.25rem;
 }
 .fa-users {
-    color: #007bff !important;
+    color: #2fe52f !important;
 }
 .fa-user-shield {
-    color: #28a745 !important;
+    color: #45a1eb !important;
 }
 
-/* Cognito-style Auth Page */
-.cognito-auth-bg {
+
+/* dynamodb users (login & signup)*/
+.user-auth-bg {
     background: #f4f6fb;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.cognito-auth-container {
+.user-auth-container {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
@@ -299,11 +272,11 @@ body {
     flex-direction: column;
     align-items: stretch;
 }
-.cognito-auth-tabs {
+.user-auth-tabs {
     display: flex;
     margin-bottom: 24px;
 }
-.cognito-auth-tabs button {
+.user-auth-tabs button {
     flex: 1;
     padding: 12px 0;
     background: none;
@@ -314,27 +287,27 @@ body {
     transition: border-color 0.2s, color 0.2s;
     color: #555;
 }
-.cognito-auth-tabs button.active {
+.user-auth-tabs button.active {
     border-bottom: 2.5px solid #2563eb;
     color: #2563eb;
     font-weight: 600;
 }
-.cognito-auth-form {
+.user-auth-form {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
-.cognito-auth-field {
+.user-auth-field {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
-.cognito-auth-field label {
+.user-auth-field label {
     font-size: 0.97em;
     color: #333;
     margin-bottom: 2px;
 }
-.cognito-auth-field input {
+.user-auth-field input {
     padding: 10px 12px;
     border: 1px solid #d1d5db;
     border-radius: 6px;
@@ -342,25 +315,12 @@ body {
     background: #f9fafb;
     transition: border-color 0.2s;
 }
-.cognito-auth-field input:focus {
+.user-auth-field input:focus {
     border-color: #2563eb;
     outline: none;
     background: #fff;
 }
-.cognito-auth-field select {
-    padding: 10px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 1em;
-    background: #f9fafb;
-    transition: border-color 0.2s;
-}
-.cognito-auth-field select:focus {
-    border-color: #2563eb;
-    outline: none;
-    background: #fff;
-}
-.cognito-auth-form button {
+.user-auth-form button {
     margin-top: 8px;
     padding: 12px 0;
     background: #2563eb;
@@ -372,16 +332,17 @@ body {
     cursor: pointer;
     transition: background 0.2s;
 }
-.cognito-auth-form button:hover {
+.user-auth-form button:hover {
     background: #1e40af;
 }
-.cognito-auth-message {
+.user-auth-message {
     min-height: 20px;
     font-size: 0.98em;
     margin-top: 4px;
     color: #e11d48;
     text-align: center;
 }
+
 
 /* User Profile Page Styles */
 .profile-card {

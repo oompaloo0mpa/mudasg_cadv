@@ -1,69 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login / Signup</title>
+    <title>Volunteer Login & Sign Up</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="cognito-auth-bg">
-    <div class="cognito-auth-container">
-        <div class="cognito-auth-tabs">
-            <button id="loginTab" class="active">Login</button>
-            <button id="signupTab">Sign Up</button>
+
+<body class="user-auth-bg">
+    <div class="user-auth-container">
+        <div class="user-auth-tabs">
+            <button id="loginTab" class="active" onclick="showForm('login')">Login</button>
+            <button id="signupTab" onclick="showForm('signup')">Sign Up</button>
         </div>
-        <div id="loginForm" class="cognito-auth-form">
-            <h2>Login</h2>
-            <div class="cognito-auth-field">
-                <label for="loginEmail">Email</label>
-                <input type="email" id="loginEmail" required>
+
+        <form id="loginForm" class="user-auth-form" onsubmit="handleLogin(event)">
+            <div class="user-auth-field">
+                <label for="login_email">Email</label>
+                <input type="email" id="login_email" required>
             </div>
-            <div class="cognito-auth-field">
-                <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword" required>
+            <div class="user-auth-field">
+                <label for="login_password">Password</label>
+                <input type="password" id="login_password" required>
             </div>
-            <button id="loginBtn">Login</button>
-            <div id="loginMessage" class="cognito-auth-message"></div>
-        </div>
-        <div id="signupForm" class="cognito-auth-form" style="display:none;">
-            <h2>Sign Up</h2>
-            <div class="cognito-auth-field">
-                <label for="signupEmail">Email</label>
-                <input type="email" id="signupEmail" required>
+            <div id="loginMessage" class="user-auth-message"></div>
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signupForm" class="user-auth-form" style="display: none;" onsubmit="handleSignup(event)">
+            <div class="user-auth-field">
+                <label for="signup_name">Full Name</label>
+                <input type="text" id="signup_name" required>
             </div>
-            <div class="cognito-auth-field">
-                <label for="signupContact">Contact No</label>
-                <input type="text" id="signupContact" required>
+            <div class="user-auth-field">
+                <label for="signup_email">Email</label>
+                <input type="email" id="signup_email" required>
             </div>
-            <div class="cognito-auth-field">
-                <label for="signupDOB">Date of Birth</label>
-                <input type="date" id="signupDOB" required>
+            <div class="user-auth-field">
+                <label for="signup_password">Password</label>
+                <input type="password" id="signup_password" required>
             </div>
-            <div class="cognito-auth-field">
-                <label for="signupFullname">Full Name</label>
-                <input type="text" id="signupFullname" required>
-            </div>
-            <div class="cognito-auth-field">
-                <label for="signupGender">Gender</label>
-                <select id="signupGender" required>
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <div class="cognito-auth-field">
-                <label for="signupPassword">Password</label>
-                <input type="password" id="signupPassword" required>
-            </div>
-            <div class="cognito-auth-field">
-                <label for="signupConfirmPassword">Confirm Password</label>
-                <input type="password" id="signupConfirmPassword" required>
-            </div>
-            <button id="signupBtn">Sign Up</button>
-            <div id="signupMessage" class="cognito-auth-message"></div>
-        </div>
+            <div id="signupMessage" class="user-auth-message"></div>
+            <button type="submit">Create Account</button>
+        </form>
     </div>
-    <script src="../js/user_auth.js"></script>
+
+    <script src="js/user_auth.js"></script>
 </body>
-</html> 
+
+</html>
