@@ -255,6 +255,16 @@ body {
     font-size: 4rem !important;
 }
 
+/* overrides the btn-primary stuff so it can actl match the color */
+.btn-primary {
+    background-color: #5cb1f6 !important;
+    border-color: #5cb1f6 !important;
+}
+.btn-primary:hover {
+    background-color: #3f7aab !important;
+    border-color: #3f7aab !important;
+}
+
 
 /* dynamodb user login & signups*/
 .user-auth-bg {
@@ -423,5 +433,72 @@ body {
     margin-top: 1rem;
     text-align: center;
     font-size: 1rem;
+}
+
+/* Image upload styles */
+.image-upload-container {
+    position: relative;
+}
+
+.image-preview {
+    position: relative;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.image-preview img {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-image-btn:hover {
+    background: #b71c1c;
+}
+
+.current-image {
+    margin-top: 10px;
+}
+
+.current-image img {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+}
+
+/* Event card image styles */
+.event-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.event-detail-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 

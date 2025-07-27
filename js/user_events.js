@@ -7,9 +7,13 @@ function loadEvents() {
         .then(events => {
             let html = '';
             events.forEach(event => {
+                const imageHtml = event.event_image ? 
+                    `<img src="${event.event_image}" class="event-card-image" alt="${event.event_name}">` : '';
+                
                 html += `
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
+                        ${imageHtml}
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">${event.event_name}</h5>
                             <p class="card-text text-muted small">

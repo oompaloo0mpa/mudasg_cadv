@@ -10,9 +10,13 @@ function loadEvents() {
             eventsContainer.innerHTML = '';
             for (let i = 0; i < events.length; i++) {
                 const event = events[i];
+                const imageHtml = event.event_image ? 
+                    `<img src="${event.event_image}" class="event-card-image" alt="${event.event_name}">` : '';
+                
                 const eventCard =
                     '<div class="col-md-4 mb-4">' +
                     '<div class="card h-100">' +
+                    imageHtml +
                     '<div class="card-body d-flex flex-column">' +
                     '<h5 class="card-title">' + event.event_name + '</h5>' +
                     '<p class="card-text text-muted small">' + new Date(event.event_time).toLocaleString() + '<br>' + event.event_location + '</p>' +
@@ -48,6 +52,16 @@ function loadEventDetails() {
         document.getElementById("eventTime").textContent = new Date(event.event_time).toLocaleString();
         document.getElementById("eventLocation").textContent = event.event_location;
         document.getElementById("eventDescription").textContent = event.event_description;
+        
+        // Display event image if it exists
+        const eventImageContainer = document.getElementById("eventImage");
+        if (eventImageContainer) {
+            if (event.event_image) {
+                eventImageContainer.innerHTML = `<img src="${event.event_image}" class="event-detail-image" alt="${event.event_name}">`;
+            } else {
+                eventImageContainer.innerHTML = '';
+            }
+        }
 
         var btns = document.getElementById("eventButtons");
         var loginType = localStorage.getItem("loginType");
@@ -106,6 +120,11 @@ function loadEditEvent() {
             document.getElementById('event_time').value = event.event_time.replace(' ', 'T').slice(0, 16);
             document.getElementById('event_location').value = event.event_location;
             document.getElementById('event_description').value = event.event_description;
+            
+            // Set current image if it exists
+            if (event.event_image) {
+                setCurrentImage(event.event_image);
+            }
         }
     };
     request.send();
@@ -121,7 +140,8 @@ function submitEditEvent(e) {
         event_name: document.getElementById('event_name').value,
         event_time: document.getElementById('event_time').value.replace('T', ' '),
         event_location: document.getElementById('event_location').value,
-        event_description: document.getElementById('event_description').value
+        event_description: document.getElementById('event_description').value,
+        event_image: getUploadedImageUrl() || null
     };
 
     const request = new XMLHttpRequest();
@@ -144,7 +164,8 @@ function submitCreateEvent(e) {
         event_name: document.getElementById("event_name").value,
         event_time: document.getElementById("event_time").value.replace('T', ' '),
         event_location: document.getElementById("event_location").value,
-        event_description: document.getElementById("event_description").value
+        event_description: document.getElementById("event_description").value,
+        event_image: getUploadedImageUrl() || null
     };
 
     if (!eventData.event_name || !eventData.event_time || !eventData.event_location || !eventData.event_description) {

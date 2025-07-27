@@ -25,6 +25,16 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('eventTime').textContent = formatDateTime(event.event_time);
     document.getElementById('eventLocation').textContent = event.event_location;
     document.getElementById('eventDescription').textContent = event.event_description;
+    
+    // Display event image if it exists
+    const eventImageContainer = document.getElementById("eventImage");
+    if (eventImageContainer) {
+        if (event.event_image) {
+            eventImageContainer.innerHTML = `<img src="${event.event_image}" class="event-detail-image" alt="${event.event_name}">`;
+        } else {
+            eventImageContainer.innerHTML = '';
+        }
+    }
 
     // Setup Apply button
     const applyBtn = document.getElementById('applyBtn');
