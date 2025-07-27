@@ -1,6 +1,6 @@
-const API_BASE = 'https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events';
-const APPLICATION_API = 'https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application';
-const APPLICATION_EVENT_API = 'https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application-event';
+const API_BASE = 'https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events';
+const APPLICATION_API = 'https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application';
+const APPLICATION_EVENT_API = 'https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application-event';
 
 // Load event details and setup apply button
 

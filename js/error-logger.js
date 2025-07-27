@@ -45,7 +45,7 @@ function sendErrorLog(errorData) {
         return;
     }
     
-    fetch('https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/log-error', {
+            fetch('https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/log-error', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

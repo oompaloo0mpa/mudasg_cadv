@@ -1,4 +1,4 @@
-const API_BASE = 'https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events';
+const API_BASE = 'https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events';
 
 // Fetch and display all events
 function loadEvents() {
@@ -60,7 +60,7 @@ function loadUserProfile() {
     document.getElementById('profileEmail').textContent = user.email || '<User@email.com>';
 
     // Always use email for fetching applications
-    const fetchUrl = `https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application-event/${encodeURIComponent(user.email)}`;
+    const fetchUrl = `https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application-event/${encodeURIComponent(user.email)}`;
 
     fetch(fetchUrl, {
         method: 'GET',
@@ -82,7 +82,7 @@ function loadUserProfile() {
         document.getElementById('totalEvents').textContent = applications.length;
         // Fetch event details for each application
         const eventIds = applications.map(app => app.event_id);
-        const eventsRes = await fetch('https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events', {
+        const eventsRes = await fetch('https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         });
@@ -139,7 +139,7 @@ function editUserEvent(eventId) {
 }
 
 function deleteApplication(email, event_id) {
-    fetch("https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application/" + email + "/" + event_id, {
+    fetch("https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/application/" + email + "/" + event_id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
     })

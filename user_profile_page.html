@@ -42,19 +42,19 @@
             <div class="p-3 rounded bg-light">
                 <h3 class="fw-bold mb-3">Your Events</h3>
                 <div id="userEventsList">
-                    <!-- User's events will be loaded here by JS -->
+                    <!-- all that user stuffs going in here -->
                 </div>
             </div>
         </section>
     </main>
     <script src="../js/user_events.js"></script>
     <script>
-        // Add event listeners for Browse Events and Log Out
+        // user inde page bringer
         document.getElementById('browseEventsBtn').onclick = function() {
             window.location.href = 'user_index_page.html';
         };
         document.getElementById('logoutBtn').onclick = function() {
-            // Clear user session and redirect to onboarding
+            // clears session aft logout
             sessionStorage.clear();
             window.location.href = 'onboarding_page.html';
         };

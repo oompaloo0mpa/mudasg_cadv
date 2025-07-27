@@ -1,4 +1,4 @@
-const API_BASE = 'https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events';
+const API_BASE = 'https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events';
 
 function loadEvents() {
     fetch(API_BASE, {
@@ -54,7 +54,7 @@ function loadEventDetails() {
     if (!eventId) return;
 
     var request = new XMLHttpRequest();
-    request.open("GET", "https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events_type/" + eventId, true);
+    request.open("GET", "https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events_type/" + eventId, true);
     request.onload = function() {
         response = JSON.parse(request.responseText);
         // The API returns an array, so get the first item
@@ -85,7 +85,7 @@ function deleteEvent(eventId) {
     if (!confirm('Are you sure you want to delete this event?')) return;
     
     const request = new XMLHttpRequest();
-    request.open('DELETE', `https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events/${eventId}`, true);
+    request.open('DELETE', `https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events/${eventId}`, true);
     
     request.onload = function() {
         console.log('Delete response status:', request.status);
@@ -113,7 +113,7 @@ function loadEditEvent() {
     if (!eventId) return;
 
     const request = new XMLHttpRequest();
-    request.open('GET', `https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events_type/${eventId}`, true);
+    request.open('GET', `https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events_type/${eventId}`, true);
     request.onload = function() {
         if (request.status === 200) {
             const response = JSON.parse(request.responseText);
@@ -140,7 +140,7 @@ function submitEditEvent(e) {
         event_description: document.getElementById('event_description').value
     };
 
-    fetch(`https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events/${eventId}`, {
+    fetch(`https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events/${eventId}`, {
         method: 'PUT',
         body: JSON.stringify(eventData),
         headers: { 'Content-Type': 'application/json' }
@@ -179,7 +179,7 @@ function submitCreateEvent(e) {
         return;
     }
 
-    fetch("https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events", {
+    fetch("https://ge1parm0ce.execute-api.us-east-1.amazonaws.com/events", {
         method: 'POST',
         body: JSON.stringify(eventData),
         headers: { 'Content-Type': 'application/json' }
