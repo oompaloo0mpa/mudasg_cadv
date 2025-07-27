@@ -1,11 +1,25 @@
 version: 1
 frontend:
   phases:
+    preBuild:
+      commands:
+        - echo "Starting pre-build phase"
     build:
-      commands: []
+      commands:
+        - echo "Building application"
+        - echo "Copying files to build directory"
+    postBuild:
+      commands:
+        - echo "Build completed successfully"
   artifacts:
     baseDirectory: .
     files:
       - '**/*'
+      - '!node_modules/**/*'
+      - '!.git/**/*'
+      - '!amplify.yml'
+      - '!package.json'
+      - '!package-lock.json'
   cache:
-    paths: []
+    paths:
+      - node_modules/**/*
