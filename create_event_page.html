@@ -33,23 +33,12 @@
                     <label for="event_description" class="form-label">Event Description</label>
                     <textarea class="form-control" id="event_description" rows="3" required></textarea>
                 </div>
-                <div class="mb-3">
-                    <label for="event_image" class="form-label">Event Image</label>
-                    <div class="image-upload-container">
-                        <input type="file" class="form-control" id="event_image" accept="image/*" onchange="previewImage(this)">
-                        <div id="imagePreview" class="image-preview" style="display: none;">
-                            <img id="previewImg" src="" alt="Preview">
-                            <button type="button" class="remove-image-btn" onclick="removeImage()">×</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="d-grid mt-4">
                     <button type="submit" class="create_btn">Create</button>
                 </div>
             </form>
         </div>
     </div>
-    <script src="js/image-upload.js"></script>
     <script src="js/events.js?v=1"></script>
 </body>
 </html>

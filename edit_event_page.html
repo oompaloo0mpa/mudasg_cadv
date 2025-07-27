@@ -31,27 +31,12 @@
                     <label for="event_description" class="form-label">Event Description</label>
                     <textarea class="form-control" id="event_description" rows="3" required autocomplete="off"></textarea>
                 </div>
-                <div class="mb-3">
-                    <label for="event_image" class="form-label">Event Image</label>
-                    <div class="image-upload-container">
-                        <input type="file" class="form-control" id="event_image" accept="image/*" onchange="previewImage(this)">
-                        <div id="imagePreview" class="image-preview" style="display: none;">
-                            <img id="previewImg" src="" alt="Preview">
-                            <button type="button" class="remove-image-btn" onclick="removeImage()">×</button>
-                        </div>
-                        <div id="currentImage" class="current-image" style="display: none;">
-                            <img id="currentImg" src="" alt="Current Image">
-                            <small class="text-muted">Current image (upload new one to replace)</small>
-                        </div>
-                    </div>
-                </div>
                 <div class="d-grid mt-4">
                     <button type="submit" class="create_btn">Save Changes</button>
                 </div>
             </form>
         </div>
     </div>
-    <script src="js/image-upload.js"></script>
     <script src="js/events.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
