@@ -16,7 +16,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (!eventId) return;
 
     // Fetch event details
-    const res = await fetch(API_BASE);
+    const res = await fetch(API_BASE, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    
+    if (res.status === 429) {
+        alert('Too many requests! Please wait a moment before trying again.');
+        return;
+    }
+    if (!res.ok) {
+        console.error('Failed to fetch events:', res.status);
+        return;
+    }
+    
     const events = await res.json();
     const event = events.find(e => e.event_id == eventId);
     if (!event) return;
@@ -73,6 +86,12 @@ async function applyForEvent(eventId, event) {
             body: JSON.stringify(jsonData)
         });
         console.log('Response status:', res.status);
+        
+        if (res.status === 429) {
+            alert('Too many requests! Please wait a moment before trying again.');
+            return;
+        }
+        
         const data = await res.json();
         console.log('Response data:', data);
         

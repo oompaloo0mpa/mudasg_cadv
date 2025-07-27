@@ -1,39 +1,46 @@
 const API_BASE = 'https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events';
 
 function loadEvents() {
-    const request = new XMLHttpRequest();
-    request.open('GET', API_BASE, true);
-    request.onload = function() {
-        if (request.status === 200) {
-            try {
-                const events = JSON.parse(request.responseText);
-                let eventsContainer = document.getElementById('eventsContainer');
-                eventsContainer.innerHTML = '';
-                for (let i = 0; i < events.length; i++) {
-                    const event = events[i];
-                    const eventCard =
-                        '<div class="col-md-4 mb-4">' +
-                        '<div class="card h-100">' +
-                        '<div class="card-body d-flex flex-column">' +
-                        '<h5 class="card-title">' + event.event_name + '</h5>' +
-                        '<p class="card-text text-muted small">' + new Date(event.event_time).toLocaleString() + '<br>' + event.event_location + '</p>' +
-                        '<button class="btn btn-details mt-auto" onclick="viewEvent(\'' + event.event_id + '\')">View Details</button>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>';
-                    eventsContainer.innerHTML += eventCard;
-                }
-            } catch (error) {
-                logError('Error parsing events data', error);
-            }
-        } else {
-            logError('Failed to load events: ' + request.status);
+    fetch(API_BASE, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+        if (response.status === 429) {
+            alert('Too many requests! Please wait a moment before trying again.');
+            throw new Error('Throttled by API Gateway');
         }
-    };
-    request.onerror = function() {
-        logError('Network error loading events');
-    };
-    request.send();
+        if (!response.ok) {
+            throw new Error('Request failed: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(events => {
+        try {
+            let eventsContainer = document.getElementById('eventsContainer');
+            eventsContainer.innerHTML = '';
+            for (let i = 0; i < events.length; i++) {
+                const event = events[i];
+                const eventCard =
+                    '<div class="col-md-4 mb-4">' +
+                    '<div class="card h-100">' +
+                    '<div class="card-body d-flex flex-column">' +
+                    '<h5 class="card-title">' + event.event_name + '</h5>' +
+                    '<p class="card-text text-muted small">' + new Date(event.event_time).toLocaleString() + '<br>' + event.event_location + '</p>' +
+                    '<button class="btn btn-details mt-auto" onclick="viewEvent(\'' + event.event_id + '\')">View Details</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+                eventsContainer.innerHTML += eventCard;
+            }
+        } catch (error) {
+            logError('Error parsing events data', error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        logError('Failed to load events: ' + error.message);
+    });
 }
 
 function viewEvent(eventId) {
@@ -133,18 +140,29 @@ function submitEditEvent(e) {
         event_description: document.getElementById('event_description').value
     };
 
-    const request = new XMLHttpRequest();
-    request.open('PUT', `https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events/${eventId}`, true);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.onload = function() {
-        if (request.status === 200) {
-            alert('Event updated successfully!');
-            window.location.href = `specific_event_page.html?event_id=${eventId}`;
-        } else {
-            alert('Error updating event.');
+    fetch(`https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events/${eventId}`, {
+        method: 'PUT',
+        body: JSON.stringify(eventData),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+        if (response.status === 429) {
+            alert('Too many requests! Please wait a moment before trying again.');
+            throw new Error('Throttled by API Gateway');
         }
-    };
-    request.send(JSON.stringify(eventData));
+        if (!response.ok) {
+            throw new Error('Request failed: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('Event updated successfully!');
+        window.location.href = `specific_event_page.html?event_id=${eventId}`;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error updating event.');
+    });
 }
 
 function submitCreateEvent(e) {
@@ -161,18 +179,29 @@ function submitCreateEvent(e) {
         return;
     }
 
-    const request = new XMLHttpRequest();
-    request.open("POST", "https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events", true);
-    request.setRequestHeader("Content-Type", "application/json");
-    request.onload = function() {
-        if (request.status === 200 || request.status === 201) {
-            alert('Event created successfully!');
-            window.location.href = "index_page.html";
-        } else {
-            alert('Error. Unable to create event.');
+    fetch("https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events", {
+        method: 'POST',
+        body: JSON.stringify(eventData),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+        if (response.status === 429) {
+            alert('Too many requests! Please wait a moment before trying again.');
+            throw new Error('Throttled by API Gateway');
         }
-    };
-    request.send(JSON.stringify(eventData));
+        if (!response.ok) {
+            throw new Error('Request failed: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('Event created successfully!');
+        window.location.href = "index_page.html";
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error. Unable to create event.');
+    });
 }
 
 function checkCognitoAuth() {

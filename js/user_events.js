@@ -2,28 +2,44 @@ const API_BASE = 'https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events'
 
 // Fetch and display all events
 function loadEvents() {
-    fetch(API_BASE)
-        .then(response => response.json())
-        .then(events => {
-            let html = '';
-            events.forEach(event => {
-                html += `
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${event.event_name}</h5>
-                            <p class="card-text text-muted small">
-                                ${formatDateTime(event.event_time)}<br>
-                                ${event.event_location}
-                            </p>
-                            <button class="btn btn-details mt-auto" onclick="viewEvent('${event.event_id}')">View Details</button>
-                        </div>
+    fetch(API_BASE, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+        if (response.status === 429) {
+            alert('Too many requests! Please wait a moment before trying again.');
+            throw new Error('Throttled by API Gateway');
+        }
+        if (!response.ok) {
+            throw new Error('Request failed: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(events => {
+        let html = '';
+        events.forEach(event => {
+            html += `
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${event.event_name}</h5>
+                        <p class="card-text text-muted small">
+                            ${formatDateTime(event.event_time)}<br>
+                            ${event.event_location}
+                        </p>
+                        <button class="btn btn-details mt-auto" onclick="viewEvent('${event.event_id}')">View Details</button>
                     </div>
                 </div>
-                `;
-            });
-            document.getElementById('eventsRow').innerHTML = html;
+            </div>
+            `;
         });
+        document.getElementById('eventsRow').innerHTML = html;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('eventsRow').innerHTML = '<div class="col-12"><p class="text-center text-danger">Failed to load events. Please try again later.</p></div>';
+    });
 }
 
 function formatDateTime(dt) {
@@ -46,28 +62,56 @@ function loadUserProfile() {
     // Always use email for fetching applications
     const fetchUrl = `https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application-event/${encodeURIComponent(user.email)}`;
 
-    fetch(fetchUrl)
-        .then(res => res.json())
-        .then(async data => {
-            // Support both array and { Items: [...] } response
-            const applications = Array.isArray(data) ? data : (data.Items || []);
-            document.getElementById('totalEvents').textContent = applications.length;
-            // Fetch event details for each application
-            const eventIds = applications.map(app => app.event_id);
-            const eventsRes = await fetch('https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events');
-            const allEvents = await eventsRes.json();
-            // Map event_id to event details
-            const eventsMap = {};
-            allEvents.forEach(ev => { eventsMap[ev.event_id] = ev; });
-            // Merge application info with event details
-            const userEvents = applications.map(app => ({
-                ...app,
-                event_name: eventsMap[app.event_id]?.event_name || app.event_name || app.name,
-                event_time: eventsMap[app.event_id]?.event_time || app.event_time || '',
-                event_location: eventsMap[app.event_id]?.event_location || app.event_location || '',
-            }));
-            renderUserEvents(userEvents);
+    fetch(fetchUrl, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+        if (response.status === 429) {
+            alert('Too many requests! Please wait a moment before trying again.');
+            throw new Error('Throttled by API Gateway');
+        }
+        if (!response.ok) {
+            throw new Error('Request failed: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(async data => {
+        // Support both array and { Items: [...] } response
+        const applications = Array.isArray(data) ? data : (data.Items || []);
+        document.getElementById('totalEvents').textContent = applications.length;
+        // Fetch event details for each application
+        const eventIds = applications.map(app => app.event_id);
+        const eventsRes = await fetch('https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/events', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
         });
+        
+        if (eventsRes.status === 429) {
+            throw new Error('Throttled by API Gateway');
+        }
+        if (!eventsRes.ok) {
+            throw new Error('Failed to fetch events: ' + eventsRes.status);
+        }
+        
+        const allEvents = await eventsRes.json();
+        // Map event_id to event details
+        const eventsMap = {};
+        allEvents.forEach(ev => { eventsMap[ev.event_id] = ev; });
+        // Merge application info with event details
+        const userEvents = applications.map(app => ({
+            ...app,
+            event_name: eventsMap[app.event_id]?.event_name || app.event_name || app.name,
+            event_time: eventsMap[app.event_id]?.event_time || app.event_time || '',
+            event_location: eventsMap[app.event_id]?.event_location || app.event_location || '',
+        }));
+        renderUserEvents(userEvents);
+    })
+    .catch(error => {
+        console.error('Error loading user profile:', error);
+        document.getElementById('totalEvents').textContent = '0';
+        document.getElementById('userEventsList').innerHTML = '<div class="text-danger">Failed to load events. Please try again later.</div>';
+    });
 }
 
 function renderUserEvents(events) {
@@ -95,20 +139,32 @@ function editUserEvent(eventId) {
 }
 
 function deleteApplication(email, event_id) {
-    var response = "";
-    var request = new XMLHttpRequest();
-    request.open("DELETE", "https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application/" + email + "/" + event_id, true);
-    request.onload = function() {
-        response = JSON.parse(request.responseText);
+    fetch("https://pm1iuvkzx8.execute-api.us-east-1.amazonaws.com/application/" + email + "/" + event_id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+        if (response.status === 429) {
+            alert('Too many requests! Please wait a moment before trying again.');
+            throw new Error('Throttled by API Gateway');
+        }
+        if (!response.ok) {
+            throw new Error('Request failed: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(response => {
         if (response.message == "application deleted") {
             alert('Application deleted successfully.');
             location.reload();
-        }
-        else {
+        } else {
             alert('Error. Unable to delete application.');
         }
-    };
-    request.send();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error. Unable to delete application.');
+    });
 }
 
 function deleteUserEvent(eventId) {
