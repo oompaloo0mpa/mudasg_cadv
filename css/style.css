@@ -31,7 +31,7 @@ body {
     text-decoration: none;
 }
 
-/* cognito login */
+/* onboarding stuff */
 .login-option-card {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     border: 2px solid #e0e0e0;
@@ -39,10 +39,9 @@ body {
 .login-option-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-color: #007bff;
 }
 .user_button {
-    background: #2563eb;
+    background: #43cf43;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -52,10 +51,10 @@ body {
     cursor: pointer;
 }
 .user_button:hover {
-    background: #1746a2;
+    background: #39b439;
 }
 .admin_button {
-    background: #8b5cf6; /* purple-500 */
+    background: #5cb1f6; 
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -65,7 +64,7 @@ body {
     cursor: pointer;
 }
 .admin_button:hover {
-    background: #6d28d9; /* purple-700 */
+    background: #3f7aab; 
 }
 
 /* cognito login*/
