@@ -254,7 +254,7 @@ body {
 }
 
 
-/* dynamodb users (login & signup)*/
+/* dynamodb user login & signups*/
 .user-auth-bg {
     background: #f4f6fb;
     min-height: 100vh;
@@ -288,8 +288,8 @@ body {
     color: #555;
 }
 .user-auth-tabs button.active {
-    border-bottom: 2.5px solid #2563eb;
-    color: #2563eb;
+    border-bottom: 2.5px solid #43cf43;
+    color: #43cf43;
     font-weight: 600;
 }
 .user-auth-form {
@@ -315,25 +315,27 @@ body {
     background: #f9fafb;
     transition: border-color 0.2s;
 }
+
 .user-auth-field input:focus {
-    border-color: #2563eb;
+    border: 2px solid #000000; 
     outline: none;
     background: #fff;
 }
+
 .user-auth-form button {
     margin-top: 8px;
     padding: 12px 0;
-    background: #2563eb;
+    background: #43cf43;
     color: #fff;
     border: none;
     border-radius: 6px;
     font-size: 1.1em;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+
 }
 .user-auth-form button:hover {
-    background: #1e40af;
+    background: #39b439;
 }
 .user-auth-message {
     min-height: 20px;
@@ -344,7 +346,7 @@ body {
 }
 
 
-/* User Profile Page Styles */
+/* profile page stuffs */
 .profile-card {
     background: #e0e0e0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
